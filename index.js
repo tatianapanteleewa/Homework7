@@ -6,14 +6,13 @@ console.log(userString);
 
 // 2
 
-let newArray = new Array();
-let newString;
-
-newArray.forEach((arrayBefore) => {
-    if (arrayBefore.toLowerCase().startsWith(newString.toLowerCase())) {
-        return arrayBefore.split('');
-    }
-});
+const findStartsWith = (arr, string) => {
+    const resultArr = [];
+    arr.forEach(element => {
+        if (element.toLowerCase().startsWith(string.toLowerCase())) resultArr.push(element);
+    });
+    return resultArr;
+}
 
 // 3
 
@@ -24,8 +23,10 @@ const g = Math.round(number);
 
 // 4
 
-console.log(Math.max(52, 53, 49, 77, 21, 32));
-console.log(Math.min(52, 53, 49, 77, 21, 32));
+const numbers = [52, 53, 49, 77, 21, 32]
+
+console.log(Math.max(...numbers));
+console.log(Math.min(...numbers));
 
 // 5
 
@@ -62,24 +63,17 @@ console.log(myDate);
 
 // 9
 let currentDate = new Date();
-let days73 = 73 * 24 * 60 * 60 * 1000;
-let searchDate = +currentDate + days73;
-let daysAfter73 = new Date(searchDate);
+currentDate.setDate(currentDate.getDate() + 73);
 
-console.log(daysAfter73);
+console.log(currentDate);
 
 // 10
 
-const days = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-
-function whatTheDay(Date) {
-    let fullDate = "Дата: " + Date.getDate() + " " + months[Date.getMonth()] + " " + Date.getFullYear() + " - это " + days[Date.getDay()];
-    console.log(fullDate);
-    let fullTime = "Время: " + Date.getHours() + ":" + Date.getMinutes() + ":" + Date.getSeconds();
-    console.log(fullTime);
+function formatDate(date) {
+    const locale = 'ru-RU'
+    return `Дата: ${date.toLocaleString(locale, { day: 'numeric', month: 'long', year: 'numeric' })} - это ${date.toLocaleString(locale, { weekday: 'long' })}.
+Время: ${date.toLocaleTimeString(locale)}`
 }
+console.log(formatDate(new Date()));
 
-whatTheDay(new Date);
 
